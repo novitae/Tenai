@@ -1,5 +1,5 @@
 # Private Instagram Chaining
-## 🔮 Uncover mutual followers of a private instagram account
+## 🔮 Uncover part of followers of an instagram private account
 ![](./illustration.png)
 ## 👉 Setup & Usage
 ### 📲 Installation
@@ -28,6 +28,7 @@ tenai -s/--session-id SESSIONID -u/--username USERNAME
     - _You can't know how many mutuals a private account has if you're not following it._
 - ⚠️ Accounts with **too much followers** (over ~15k*) **are also protected**.
 - ⚠️ Accounts who **disabled [Similar account suggestions](https://help.instagram.com/530450580417848)** (very few) **are protected**.
+- ⚠️ Accounts **followed by yourself are not targetable** (they're returning suggestions based on your own activity).
 - ✅ All **accounts not mentionned in the previous lines are targetable** with this technique.
 
 *_These numbers are approximative, based on the tests I made._
