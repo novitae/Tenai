@@ -5,7 +5,7 @@ setup(
     version = '1.1',
     description = 'Uncover part of the mutuals followers of an instagram private account',
     author = 'novitae',
-    url = 'https://github.com/novitae/Pinch',
+    url = 'https://github.com/novitae/Tenai',
     license = 'GNU General Public License v3 (GPLv3)',
     classifiers = [
         'Programming Language :: Python :: 3.9',
