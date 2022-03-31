@@ -1,1 +1,1 @@
-from .core import PrivateInstaChaining
+from .core import InstaMutualsChaining

@@ -20,8 +20,8 @@ tenai -s/--session-id SESSIONID -u/--username USERNAME
 - To print details on account, add `-d/--details`
 ### 📇 Use it as a Library
 ```python
->>> from tenai import PrivateInstaChaining
->>> info = PrivateInstaChaining(session_id=SESSIONID)
+>>> from tenai import InstaMutualsChaining
+>>> info = InstaMutualsChaining(session_id=SESSIONID)
 >>> info.get_data(username=USERNAME)
 {"users":[user,user...],"status":"ok","is_recommend_account":False}
 ```

@@ -25,7 +25,7 @@ HEADERS = {
     "Accept-Encoding": "gzip, deflate",
 }
 
-class PrivateInstaChaining:
+class InstaMutualsChaining:
     def __init__(self, session_id:str = None) -> None:
         try:
             with open(AUTHS_PATH, "r") as stored_auth_file:
@@ -93,7 +93,7 @@ def main() -> None:
     username=args["username"]
 
     print(bold(cs(" *","Blue"))+"  t€N@î - @"+'\u0336'.join("novitae")+'\u0336')
-    result = PrivateInstaChaining(
+    result = InstaMutualsChaining(
         session_id=args.get("session_id")
     ).get_data(
         username=username
@@ -141,7 +141,7 @@ def main() -> None:
             print(f""" -  {user["username"]}""")
 
     if args['export']:
-        name = f"{username}_private_mutuals.json"
+        name = f"{username}_mutuals.json"
         with open(name,"w") as exp:
             dump({"users":output}, exp, indent=4)
         print(f'''[{bold(cs("e","MediumPurple"))}] Exported under "{name}".''')
