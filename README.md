@@ -1,6 +1,6 @@
-# Private Instagram Chaining
-## 🔮 Uncover part of followers of an instagram private account
-I have this **private instagram account** `julianakhao`. I need to get some new tracks from it. Tenai is here to **uncover some of its mutual followers*** as shown below:
+# Instagram Mutuals Chaining
+## 🔮 Uncover part of followers of an instagram account
+I have this **instagram account** `julianakhao`. I need to get some new tracks from it. Tenai is here to **uncover some of its mutual followers*** as shown below:
 ![](./illustration.png)
 _*"Mutual followers" means accounts following and being followed-back by your the target account._
 ## 👉 Setup & Usage
@@ -20,8 +20,8 @@ tenai -s/--session-id SESSIONID -u/--username USERNAME
 - To print details on account, add `-d/--details`
 ### 📇 Use it as a Library
 ```python
->>> from tenai import PrivateInstaChaining
->>> info = PrivateInstaChaining(session_id=SESSIONID)
+>>> from tenai import InstaMutualsChaining
+>>> info = InstaMutualsChaining(session_id=SESSIONID)
 >>> info.get_data(username=USERNAME)
 {"users":[user,user...],"status":"ok","is_recommend_account":False}
 ```
@@ -35,13 +35,12 @@ tenai -s/--session-id SESSIONID -u/--username USERNAME
 
 *_These numbers are approximative, based on the tests I made._
 ## 🗂 More
-- 💡 `Tenai` comes from priva**TE** i**N**stagram ch**AI**ning.
 - 🤫 The program **will**, of course, **not alert the target**.
 - ⏳ Because of some pythonic part in the API response (`"sources": "[47, 11, 20]"` -> `"sources": str(list)`), **this technique might be exploiting a prototype in the API** that could be changed soon.
 - 👀 This program is **using an offensive SOCMINT technique**, please use it only for investigative purposes. I am **not responsible of its misuse** !
 - ♻️ Results **vary from minute to minute**: I advise to retry after a bit of time, it **could show more accounts**.
 ## ⚙️ How does it works ?
-When you're looking at a private account (on browser or app), there are suggestions of other accounts to follow. The API endpoint in charge of responding the accounts to display (`https://i.instagram.com/api/v1/fbsearch/accounts_recs/`), is responding for few weeks some new parameters, such as the following:
+When you're looking at an account (on browser or app), there are suggestions of other accounts to follow. The API endpoint in charge of responding the accounts to display (`https://i.instagram.com/api/v1/fbsearch/accounts_recs/`), is responding for few weeks some new parameters, such as the following:
 ```json
 "chaining_info": {
     "sources": "[11]",
