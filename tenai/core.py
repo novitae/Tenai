@@ -75,6 +75,12 @@ class InstaMutualsChaining:
                 "include_friendship_status": True
             }).json()
 
+def filter(Dict:dict) -> list:
+    """
+        Keeps only the "11" chaining
+    """
+    return [user for user in Dict["users"] if "11" in user["chaining_info"]["sources"]]
+
 def main() -> None:
     parser = ArgumentParser(
         add_help=False,
@@ -107,10 +113,7 @@ def main() -> None:
             print(f"{ERR} An unknown error happened during the result reading.\n    Please report the following message at https://github.com/novitae/Tenai/issues.\n")
             exit(f"---START OF MESSAGE---\n{str(result)}\n---END OF MESSAGE---") # No json.dumps to avoid decode error
 
-    output = []
-    for user in result["users"]:
-        if "11" in user["chaining_info"]["sources"]:
-            output.append(user)
+    output = filter(result)
     
     if not output:
         exit(f"{ERR} The result list contains only suggestions for you.")

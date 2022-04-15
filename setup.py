@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = 'tenai',
-    version = '1.1.1',
+    version = '1.1.2',
     description = 'Uncover part of the mutuals followers of an instagram private account',
     author = 'novitae',
     url = 'https://github.com/novitae/Tenai',
