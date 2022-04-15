@@ -26,36 +26,37 @@ HEADERS = {
 }
 
 class InstaMutualsChaining:
-    def __init__(self, session_id:str = None) -> None:
-        try:
-            with open(AUTHS_PATH, "r") as stored_auth_file:
-                stored_auth = load(stored_auth_file)["ssid"]
-        except FileNotFoundError:
-            stored_auth = ""
-            with open(AUTHS_PATH, "w") as make_stored_auth_file:
-                stored_auth = dump({"ssid":stored_auth}, make_stored_auth_file, indent=4)
+    def __init__(self, session_id:str = None, _manual:bool = False) -> None:
+        if not _manual:
+            try:
+                with open(AUTHS_PATH, "r") as stored_auth_file:
+                    stored_auth = load(stored_auth_file)["ssid"]
+            except FileNotFoundError:
+                stored_auth = ""
+                with open(AUTHS_PATH, "w") as make_stored_auth_file:
+                    stored_auth = dump({"ssid":stored_auth}, make_stored_auth_file, indent=4)
 
-        ssid = session_id if session_id else stored_auth
+            ssid = session_id if session_id else stored_auth
 
-        if not ssid:
-            exit(f"{ERR} Please login with sessionid. This will save it locally so you don't have to log with again.")
+            if not ssid:
+                exit(f"{ERR} Please login with sessionid. This will save it locally so you don't have to log with again.")
 
-        logger = Login()
-        try:
-            self.cookies = logger.session_id(session_id=ssid)
-        except exceptions.NotConnectedAccount:
-            exit(f'{ERR} "{ssid}" is not connected to any account')
-        if not logger.check_login(cookies=self.cookies):
-            raise exceptions.NotLoggedInError(f'"{ssid}" has not logged in the program')
+            logger = Login()
+            try:
+                self.cookies = logger.session_id(session_id=ssid)
+            except exceptions.NotConnectedAccount:
+                exit(f'{ERR} "{ssid}" is not connected to any account')
+            if not logger.check_login(cookies=self.cookies):
+                raise exceptions.NotLoggedInError(f'"{ssid}" has not logged in the program')
 
-        if session_id and not stored_auth:
-            with open(AUTHS_PATH, "w") as storing_auth_file:
-                stored_auth = dump({"ssid":ssid}, storing_auth_file, indent=4)
+            if session_id and not stored_auth:
+                with open(AUTHS_PATH, "w") as storing_auth_file:
+                    stored_auth = dump({"ssid":ssid}, storing_auth_file, indent=4)
 
-        self.ssid = ssid
-        self.userinfo = A1(cookies=self.cookies)
-        self.headers = HEADERS
-        self.headers.update(sessionid_to_ios_auth(session_id=ssid))
+            self.ssid = ssid
+            self.userinfo = A1(cookies=self.cookies)
+            self.headers = HEADERS
+            self.headers.update(sessionid_to_ios_auth(session_id=ssid))
 
     def get_data(self, username: str) -> dict:
         try:
