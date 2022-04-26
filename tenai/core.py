@@ -25,6 +25,20 @@ HEADERS = {
     "Accept-Encoding": "gzip, deflate",
 }
 
+def make_acc_rec_req(headers:dict, user_id:str) -> dict:
+    """
+        Makes the request to instagram to get private followers
+    """
+    return requests.get(
+        f"https://i.instagram.com/api/v1/fbsearch/accounts_recs/",
+        headers=headers,
+        params={
+            "surface": "profile_view",
+            "target_user_id": user_id,
+            "include_friendship_status": True
+        }
+    ).json()
+
 class InstaMutualsChaining:
     def __init__(self, session_id:str = None, _manual:bool = False) -> None:
         if not _manual:
@@ -66,14 +80,10 @@ class InstaMutualsChaining:
             user_id = user_id["id"]
         except exceptions.UserNotFoundError:
             exit(f"{ERR} {username} is not an existing instagram account")
-        return requests.get(
-            f"https://i.instagram.com/api/v1/fbsearch/accounts_recs/",
+        return make_acc_rec_req(
             headers=self.headers,
-            params={
-                "surface": "profile_view",
-                "target_user_id": user_id,
-                "include_friendship_status": True
-            }).json()
+            user_id=user_id
+        )
 
 def filter(Dict:dict) -> list:
     """
