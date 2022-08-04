@@ -1,6 +1,6 @@
 # Private Instagram Chaining
 ## 🔮 Uncover part of followers of an instagram private account
-## Not working anymore, instagram patched the technique.
+## ⚠️⚠️ Not working anymore, instagram patched the technique ⚠️⚠️
 I have this **private instagram account** `julianakhao`. I need to get some new tracks from it. Tenai is here to **uncover some of its mutual followers*** as shown below:
 ![](./illustration.png)
 _*"Mutual followers" means accounts following and being followed-back by your the target account._
